@@ -1,0 +1,23 @@
+version: "1.0"
+
+aws-prd-natura:
+  master:    
+    lambda_env: prd
+    lambda_name: commercial-passion-insert-window-parameter
+    logLevel: ERROR
+
+aws-hml-natura:
+  hml:    
+    lambda_env: hml
+    lambda_name: commercial-passion-insert-window-parameter
+    logLevel: INFO
+  qa:    
+    lambda_env: hml
+    lambda_name: commercial-passion-insert-window-parameter
+    logLevel: INFO
+
+aws-dev-natura:
+  dev:    
+    lambda_env: dev
+    lambda_name: commercial-passion-insert-window-parameter
+    logLevel: INFO

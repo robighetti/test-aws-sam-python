@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  commercial-passion-insert-window-parameter
+
+  Sample SAM Template for commercial-passion-insert-window-parameter
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  WindowParameterInsertFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: ./Dockerfile
+      DockerContext: .
+      DockerTag: v1  
+    
+    Properties:
+      PackageType: Image
+      ImageConfig:
+        Command: ["app.lambda_handler"]
+  
+      CodeUri: .
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      MemorySize: 2048
+      Architectures:
+        - x86_64
+
+      Events:
+        Insert:
+          Type: Api 
+          Properties:
+            Path: /window-parameter
+            Method: post             
+
+Outputs:  
+  WindowParameterInsertApi:
+    Description: "API Gateway endpoint URL for Window Parameter Insert"    
+  WindowParameterInsertFunction:
+    Description: "Insert of Window Parameter"
